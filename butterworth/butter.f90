@@ -1,31 +1,31 @@
-!! -----------------------------------------------------------------------------------------
-!! butterworth filter
-!! Author: Youshan Liu
-!! Date: 5/25/2016
-!!
-!! design the order of the butterworth filters
-!!
-!! buttordlp --- the order of the lowpass butterworth filter
-!! buttordhp --- the order of the highpass butterworth filter
-!! buttordbp --- the order of the bandpass butterworth filter
-!! buttordbs --- the order of the bandstop butterworth filter
-!!
-!! compute the filter coefficients of the butterworth filters
-!! buttlp --- the coefficients of the lowpass butterworth filter
-!! butthp --- the coefficients of the highpass butterworth filter
-!! buttbp --- the coefficients of the bandpass butterworth filter
-!! buttbs --- the coefficients of the bandstop butterworth filter
-!!
-!! buttflt --- IIR filter
-!!
-!! 3  dB--->0.5
-!! 10 dB--->1.d-1
-!! 20 dB--->1.d-2
-!! 30 dB--->1.d-3
-!! 40 dB--->1.d-4
-!! 50 dB--->1.d-5
-!! 60 dB--->1.d-30
-!! -----------------------------------------------------------------------------------------
+! -----------------------------------------------------------------------------------------
+! butterworth filter
+! Author: Youshan Liu
+! Date: 5/25/2016
+!
+! design the order of the butterworth filters
+!
+! buttordlp --- the order of the lowpass butterworth filter
+! buttordhp --- the order of the highpass butterworth filter
+! buttordbp --- the order of the bandpass butterworth filter
+! buttordbs --- the order of the bandstop butterworth filter
+!
+! compute the filter coefficients of the butterworth filters
+! buttlp --- the coefficients of the lowpass butterworth filter
+! butthp --- the coefficients of the highpass butterworth filter
+! buttbp --- the coefficients of the bandpass butterworth filter
+! buttbs --- the coefficients of the bandstop butterworth filter
+!
+! buttflt --- IIR filter
+!
+! 3  dB--->0.5
+! 10 dB--->1.d-1
+! 20 dB--->1.d-2
+! 30 dB--->1.d-3
+! 40 dB--->1.d-4
+! 50 dB--->1.d-5
+! 60 dB--->1.d-30
+! -----------------------------------------------------------------------------------------
 !
 ! buttordlp
 !
@@ -712,7 +712,7 @@ end do
 
 end subroutine polyval2
 !
-! apply filter using the coefficients of butterworth filter
+! Applying filter using the coefficients of butterworth filter
 !
 subroutine buttfilt(n, nt, a, b, x)
 
@@ -752,7 +752,7 @@ end subroutine buttfilt
 
 subroutine filtfilt(n, nt, a, b, x)
 
-!Zero-phase forward and reverse digitial IIR filtering
+! Zero-phase forward and reverse digitial IIR filtering
 
 implicit none
 
@@ -772,7 +772,7 @@ real(8) z(-n:nt)
 real(8) y(-n:nt)
 
 
-!forward
+! forward
 !call buttfilt(n, nt, a, b, x)
 z = 0.d0
 y = 0.d0
@@ -787,7 +787,7 @@ end do
 z(0:nt) = y(nt:0:-1)
 
 
-!backward
+! backward
 y = 0.d0
 do j = 0, nt, 1
    mysum = b(0) * z(j)
@@ -805,7 +805,7 @@ end subroutine filtfilt
 !
 !subroutine filtfilt(n, nt, a, b, x)
 !
-!!Zero-phase forward and reverse digitial IIR filtering
+!! Zero-phase forward and reverse digitial IIR filtering
 !
 !implicit none
 !
@@ -819,9 +819,9 @@ end subroutine filtfilt
 !real(8) z(0:nt)
 !
 !
-!!forward
+!! forward
 !call buttfilt(n, nt, a, b, x)
-!!backward
+!! backward
 !z = 0.d0
 !z(0:nt) = x(nt:0:-1)
 !call buttfilt(n, nt, a, b, z)
